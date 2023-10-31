@@ -13,9 +13,6 @@ const client = await createClient({
   .on('error', err => console.log('Redis Client Error', err))
   .connect();
 
-await client.set('key', 'value');
-const value = await client.get('key');
-
 const FUNCTIONS_KEY = 'FUNCTIONS';
 
 app.post('/create-function/:name', async (req, res) => {
