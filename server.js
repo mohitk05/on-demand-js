@@ -5,6 +5,8 @@ import bodyParser from "body-parser";
 const app = express();
 app.use(bodyParser.json())
 
+console.log(process.env.REDIS_URL);
+
 const client = await createClient({
     url: process.env.REDIS_URL,
     username: process.env.REDIS_USERNAME,
