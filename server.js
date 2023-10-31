@@ -6,7 +6,7 @@ const app = express();
 app.use(bodyParser.json())
 
 const client = await createClient({
-    url: 'redis://roundhouse.proxy.rlwy.net:42569',
+    url: process.env.REDIS_USERNAME,
     username: 'default',
     password: process.env.REDIS_PASSWORD
 })
