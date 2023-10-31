@@ -9,8 +9,6 @@ console.log(process.env.REDIS_URL);
 
 const client = await createClient({
     url: process.env.REDIS_URL,
-    username: process.env.REDIS_USERNAME,
-    password: process.env.REDIS_PASSWORD
 })
   .on('error', err => console.log('Redis Client Error', err))
   .connect();
