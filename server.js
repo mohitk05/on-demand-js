@@ -15,6 +15,10 @@ const client = await createClient({
 
 const FUNCTIONS_KEY = 'FUNCTIONS';
 
+app.get('/', (req, res) => {
+    res.send('Ok');
+})
+
 app.post('/create-function/:name', async (req, res) => {
     const functionBody = req.body.function;
     await client.HSET(FUNCTIONS_KEY, req.params.name, functionBody);
