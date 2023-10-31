@@ -8,7 +8,7 @@ app.use(bodyParser.json())
 const client = await createClient({
     url: 'redis://roundhouse.proxy.rlwy.net:42569',
     username: 'default',
-    password: 'NcnOD62NJkDH2DfojegPkN6P255C6l3a'
+    password: process.env.REDIS_PASSWORD
 })
   .on('error', err => console.log('Redis Client Error', err))
   .connect();
