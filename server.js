@@ -6,8 +6,8 @@ const app = express();
 app.use(bodyParser.json())
 
 const client = await createClient({
-    url: process.env.REDIS_USERNAME,
-    username: 'default',
+    url: process.env.REDIS_URL,
+    username: process.env.REDIS_USERNAME,
     password: process.env.REDIS_PASSWORD
 })
   .on('error', err => console.log('Redis Client Error', err))
@@ -32,8 +32,8 @@ app.post('/execute/:name', async (req, res) => {
         console.log(`(${functionBody})({ ...context })`)
         const data = eval(`(${functionBody})({ ...context })`)
         res.send({ result: data });
-    }catch {
-        res.status(500).send('Error');
+    } catch(e) {
+        res.status(500).send('Error: ' + e.toString());
     }
 })
 
