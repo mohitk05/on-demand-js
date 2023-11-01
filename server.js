@@ -28,14 +28,11 @@ app.post('/create-function/:name', async (req, res) => {
 app.post('/execute/:name', async (req, res) => {
     const context = req.body.context;
     const functionBody = await client.HGET(FUNCTIONS_KEY, req.params.name);
-    try {
-        console.log(functionBody, context);
-        console.log(`(${functionBody})({ ...context })`)
-        const data = eval(`(${functionBody})({ ...context })`)
-        res.send({ result: data });
-    } catch(e) {
-        res.status(500).send('Error: ' + e.toString());
-    }
+    
+    console.log(functionBody, context);
+    console.log(`(${functionBody})({ ...context })`)
+    const data = eval(`(${functionBody})({ ...context })`)
+    res.send({ result: data });   
 })
 
 app.listen(3000, () => {
